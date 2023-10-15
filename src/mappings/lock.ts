@@ -4,7 +4,7 @@ import { ClaimRewards, Locked, Relocked, RewardUpdate, UnlockInit, Unlocked, Wit
 export function handleLocked(event: Locked): void {
   // load factory
   //   event.transaction.from.toHex()
-  const from = event.transaction.from.toString()
+  const from = event.transaction.from.toHex()
   const txHash = event.transaction.hash.toHex()
   const sequencerId = event.params.sequencerId
   const nonce = event.params.nonce
@@ -34,7 +34,7 @@ export function handleLocked(event: Locked): void {
 export function handleUnlocked(event: Unlocked): void {
   // load factory
   //   event.transaction.from.toHex()
-  const from = event.transaction.from.toString()
+  const from = event.transaction.from.toHex()
   const txHash = event.transaction.hash.toHex()
   const sequencerId = event.params.sequencerId
   const amount = event.params.amount
@@ -56,7 +56,7 @@ export function handleUnlocked(event: Unlocked): void {
 export function handleUnlockInit(event: UnlockInit): void {
   // load factory
   //   event.transaction.from.toHex()
-  const from = event.transaction.from.toString()
+  const from = event.transaction.from.toHex()
   const txHash = event.transaction.hash.toHex()
   const sequencerId = event.params.sequencerId
   const nonce = event.params.nonce
@@ -84,7 +84,7 @@ export function handleUnlockInit(event: UnlockInit): void {
 export function handleRelocked(event: Relocked): void {
   // load factory
   //   event.transaction.from.toHex()
-  const from = event.transaction.from.toString()
+  const from = event.transaction.from.toHex()
   const txHash = event.transaction.hash.toHex()
   const sequencerId = event.params.sequencerId
   const amount = event.params.amount
@@ -106,7 +106,7 @@ export function handleRelocked(event: Relocked): void {
 export function handleWithdrawDelayTimeChange(event: WithrawDelayTimeChange): void {
   // load factory
   //   event.transaction.from.toHex()
-  const from = event.transaction.from.toString()
+  const from = event.transaction.from.toHex()
   const txHash = event.transaction.hash.toHex()
   const newWithrawDelayTime = event.params.newWithrawDelayTime
   const oldWithrawDelayTime = event.params.oldWithrawDelayTime
@@ -126,7 +126,7 @@ export function handleWithdrawDelayTimeChange(event: WithrawDelayTimeChange): vo
 export function handleRewardUpdate(event: RewardUpdate): void {
   // load factory
   //   event.transaction.from.toHex()
-  const from = event.transaction.from.toString()
+  const from = event.transaction.from.toHex()
   const txHash = event.transaction.hash.toHex()
   const oldReward = event.params.oldReward
   const newReward = event.params.newReward
@@ -146,7 +146,7 @@ export function handleRewardUpdate(event: RewardUpdate): void {
 export function handleClaimRewards(event: ClaimRewards): void {
   // load factory
   //   event.transaction.from.toHex()
-  const from = event.transaction.from.toString()
+  const from = event.transaction.from.toHex()
   const txHash = event.transaction.hash.toHex()
   const sequencerId = event.params.sequencerId
   const amount = event.params.amount
