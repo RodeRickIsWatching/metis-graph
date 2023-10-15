@@ -11,58 +11,59 @@ type LockedParam @entity {
   signerPubkey: String!
 }
 
-# type UnlockedParam @entity {
-#   # address
-#   id: ID!
-#   user: BigInt!
-#   sequencerId: BigInt!
-#   amount: BigInt!
-#   total: BigInt!
-# }
+type UnlockedParam @entity {
+  # address
+  id: ID!
+  user: String!
+  sequencerId: BigInt!
+  amount: BigInt!
+  total: BigInt!
+}
 
-# type UnlockInitParam @entity {
-#   # address
-#   id: ID!
+type UnlockInitParam @entity {
+  # address
+  id: ID!
 
-#   user: BigInt!
-#   sequencerId: BigInt!
-#   nonce: BigInt!
-#   deactivationBatch: BigInt!
-#   deactivationTime: BigInt!
-#   unlockClaimTime: BigInt!
-#   amount: BigInt!
-#   total: BigInt!
-# }
+  user: String!
+  sequencerId: BigInt!
+  nonce: BigInt!
+  deactivationBatch: BigInt!
+  deactivationTime: BigInt!
+  unlockClaimTime: BigInt!
+  amount: BigInt!
+  # total: BigInt!
+}
 
-# type RelockedParam @entity {
-#   # address
-#   id: ID!
-#   user: BigInt!
-#   sequencerId: BigInt!
-#   amount: BigInt!
-# }
+type RelockedParam @entity {
+  # address
+  id: ID!
+  user: String!
+  sequencerId: BigInt!
+  amount: BigInt!
+  total: BigInt!
+}
 
-# type WithrawDelayTimeChangeParam @entity {
-#   # address
-#   id: ID!
-#   user: BigInt!
-#   newWithrawDelayTime: BigInt!
-#   oldWithrawDelayTime: BigInt!
-# }
+type WithrawDelayTimeChangeParam @entity {
+  # address
+  id: ID!
+  user: String!
+  newWithrawDelayTime: BigInt!
+  oldWithrawDelayTime: BigInt!
+}
 
-# type RewardUpdateParam @entity {
-#   # address
-#   id: ID!
-#   user: BigInt!
-#   sequencerId: BigInt!
-#   newAmount: BigInt!
-# }
+type RewardUpdateParam @entity {
+  # address
+  id: ID!
+  user: String!
+  oldReward: BigInt!
+  newReward: BigInt!
+}
 
-# type ClaimRewardsParam @entity {
-#   # address
-#   id: ID!
-#   user: BigInt!
-#   sequencerId: BigInt!
-#   amount: BigInt!
-#   totalAmount: BigInt!
-# }
+type ClaimRewardsParam @entity {
+  # address
+  id: ID!
+  user: String!
+  sequencerId: BigInt!
+  amount: BigInt!
+  totalAmount: BigInt!
+}
