@@ -67,3 +67,12 @@ type ClaimRewardsParam @entity {
   amount: BigInt!
   totalAmount: BigInt!
 }
+
+type LockUpdateParam @entity {
+  # address
+  id: ID!
+  user: String!
+  sequencerId: BigInt!
+  newAmount: BigInt!
+  nonce: BigInt!
+}

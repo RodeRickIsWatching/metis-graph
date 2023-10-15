@@ -8,9 +8,9 @@ dataSources:
     name: Lock
     network: mainnet
     source:
-      address: '0x752C0741253097F72c373D836210d43fDc8b9108'
+      address: '0xfE561A7FD30B29BA61555a7Ff1C5b9122da5174a'
       abi: Lock
-      startBlock: 9505920
+      startBlock: 9848690
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -23,6 +23,7 @@ dataSources:
         - Relocked
         - WithrawDelayTimeChange
         - RewardUpdate
+        - LockUpdate
         - ClaimRewards
       abis:
         - name: Lock
@@ -40,8 +41,8 @@ dataSources:
           handler: handleWithdrawDelayTimeChange
         - event: RewardUpdate(uint256,uint256)
           handler: handleRewardUpdate
-        # - event: LockUpdate(indexed uint256,indexed uint256,indexed uint256)
-        #   handler: handleLockUpdate
+        - event: LockUpdate(indexed uint256,indexed uint256,indexed uint256)
+          handler: handleLockUpdate
         - event: ClaimRewards(indexed uint256,indexed uint256,indexed uint256)
           handler: handleClaimRewards
 templates:

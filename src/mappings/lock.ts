@@ -1,5 +1,5 @@
-import { ClaimRewardsParam, LockedParam, RelockedParam, RewardUpdateParam, UnlockInitParam, UnlockedParam, WithrawDelayTimeChangeParam } from '../types/schema'
-import { ClaimRewards, Locked, Relocked, RewardUpdate, UnlockInit, Unlocked, WithrawDelayTimeChange } from '../types/Lock/Lock'
+import { ClaimRewardsParam, LockUpdateParam, LockedParam, RelockedParam, RewardUpdateParam, UnlockInitParam, UnlockedParam, WithrawDelayTimeChangeParam } from '../types/schema'
+import { ClaimRewards, LockUpdate, Locked, Relocked, RewardUpdate, UnlockInit, Unlocked, WithrawDelayTimeChange } from '../types/Lock/Lock'
 
 export function handleLocked(event: Locked): void {
   // load factory
@@ -137,6 +137,26 @@ export function handleRewardUpdate(event: RewardUpdate): void {
     record = new RewardUpdateParam(txHash)
     record.oldReward = oldReward
     record.newReward = newReward
+    record.user = from
+
+    record.save()
+  }
+}
+
+export function handleLockUpdate (event: LockUpdate): void{
+  const from = event.transaction.from.toHex()
+  const txHash = event.transaction.hash.toHex()
+  const sequencerId = event.params.sequencerId
+  const nonce = event.params.nonce
+  const newAmount = event.params.newAmount
+
+  let record = LockUpdateParam.load(txHash)
+
+  if (record == null) {
+    record = new LockUpdateParam(txHash)
+    record.sequencerId = sequencerId
+    record.newAmount = newAmount
+    record.nonce = nonce
     record.user = from
 
     record.save()
