@@ -25,6 +25,7 @@ export function handleLocked(event: Locked): void {
     record.signer = signer
     record.total = total
     record.signerPubkey = signerPubkey
+    record.user = signer
 
     record.save()
   }

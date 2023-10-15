@@ -1,7 +1,7 @@
 type LockedParam @entity {
   # address
   id: ID!
-  user: BigInt!
+  user: String!
   signer: String!
   sequencerId: BigInt!
   nonce: BigInt!
