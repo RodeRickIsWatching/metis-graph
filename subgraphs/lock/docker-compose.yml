@@ -17,7 +17,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: 'mainnet:https://ethereum-goerli.publicnode.com
+      ethereum: 'mainnet:https://ethereum-goerli.publicnode.com'
       GRAPH_LOG: info
       REORG_THRESHOLD: 50
       BLOCK_BATCH_SIZE: 20
