@@ -6,7 +6,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: MetisValidatorSet
-    network: metis
+    network: mainnet
     source:
       address: "0xf83062F613527534A65ece52d93bcAcfC4A2319b"
       abi: MetisValidatorSet
