@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0xf83062F613527534A65ece52d93bcAcfC4A2319b"
       abi: MetisValidatorSet
-      startBlock: 1100000
+      startBlock: 2100000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
