@@ -45,48 +45,29 @@ dataSources:
           handler: handleLockUpdate
         - event: ClaimRewards(indexed uint256,indexed uint256,indexed uint256)
           handler: handleClaimRewards
+
+templates:
   - kind: ethereum/contract
-    name: MetisValidatorSet
-    network: metis
+    name: Lock
+    network: mainnet
     source:
-      address: "0xf83062F613527534A65ece52d93bcAcfC4A2319b"
-      abi: MetisValidatorSet
-      startBlock: 1100000
+      abi: Lock
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
-      file: ./src/mappings/block.ts
+      file: ./src/mappings/lock.ts
       entities:
-        - Block
+        - Locked
+        - Unlocked
+        - UnlockInit
+        - Relocked
+        - WithrawDelayTimeChange
+        - RewardUpdate
+        - ClaimRewards
       abis:
-        - name: MetisValidatorSet
-          file: ./abis/MetisValidatorSet.json
-      blockHandlers:
-        - handler: handleBlock
-
-# templates:
-#   - kind: ethereum/contract
-#     name: Lock
-#     network: mainnet
-#     source:
-#       abi: Lock
-#     mapping:
-#       kind: ethereum/events
-#       apiVersion: 0.0.4
-#       language: wasm/assemblyscript
-#       file: ./src/mappings/lock.ts
-#       entities:
-#         - Locked
-#         - Unlocked
-#         - UnlockInit
-#         - Relocked
-#         - WithrawDelayTimeChange
-#         - RewardUpdate
-#         - ClaimRewards
-#       abis:
-#         - name: Lock
-#           file: ./abis/Lock.json
-#       eventHandlers:
-#         - event: Locked(indexed address,indexed uint256,uint256,indexed uint256,uint256,uint256,bytes)
-#           handler: handleLocked
+        - name: Lock
+          file: ./abis/Lock.json
+      eventHandlers:
+        - event: Locked(indexed address,indexed uint256,uint256,indexed uint256,uint256,uint256,bytes)
+          handler: handleLocked
