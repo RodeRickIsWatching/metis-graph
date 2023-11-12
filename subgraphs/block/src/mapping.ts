@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import { ethereum } from "@graphprotocol/graph-ts";
-import { Block } from "../types/schema";
+import { Block } from "./types/schema";
 
 export function handleBlock(block: ethereum.Block): void {
   let entity = new Block(block.hash.toHex());
