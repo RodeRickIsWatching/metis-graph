@@ -1,7 +1,7 @@
 version: '3'
 services:
   graph-node:
-    image: graphprotocol/graph-node:v0.24.2
+    image: graphprotocol/graph-node:v0.31.0-rc.1
     ports:
       - '8000:8000'
       - '8001:8001'
@@ -45,7 +45,7 @@ services:
     restart: always
     
   graph-node1:
-    image: graphprotocol/graph-node:v0.24.2
+    image: graphprotocol/graph-node:v0.31.0-rc.1
     ports:
       - '7000:8000'
       - '7001:8001'
