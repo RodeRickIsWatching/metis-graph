@@ -45,6 +45,25 @@ dataSources:
           handler: handleLockUpdate
         - event: ClaimRewards(indexed uint256,indexed uint256,indexed uint256)
           handler: handleClaimRewards
+  - kind: ethereum/contract
+    name: MetisValidatorSet
+    network: metis
+    source:
+      address: "0xf83062F613527534A65ece52d93bcAcfC4A2319b"
+      abi: MetisValidatorSet
+      startBlock: 1100000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/block.ts
+      entities:
+        - Block
+      abis:
+        - name: MetisValidatorSet
+          file: ./abis/MetisValidatorSet.json
+      blockHandlers:
+        - handler: handleBlock
 
 templates:
   - kind: ethereum/contract
