@@ -1,4 +1,4 @@
-import { ClaimRewardsParam, LockUpdateParam, LockedParam, RelockedParam, RewardUpdateParam, UnlockInitParam, UnlockedParam, WithrawDelayTimeChangeParam } from '../types/schema'
+import { ClaimRewardsParam, LockUpdateParam, LockedUserParam, LockedParam, RelockedParam, RewardUpdateParam, UnlockInitParam, UnlockedParam, WithrawDelayTimeChangeParam } from '../types/schema'
 import { ClaimRewards, LockUpdate, Locked, Relocked, RewardUpdate, UnlockInit, Unlocked, WithrawDelayTimeChange } from '../types/Lock/Lock'
 
 export function handleLocked(event: Locked): void {
