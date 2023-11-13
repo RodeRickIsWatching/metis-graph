@@ -14,6 +14,21 @@ export function handleLocked(event: Locked): void {
   const total = event.params.total
   const signerPubkey = event.params.signerPubkey.toHex()
 
+  let lockedUserRecord = LockedUserParam.load(from)
+  if(lockedUserRecord == null){
+    
+    lockedUserRecord.user = from
+    lockedUserRecord.amount = amount
+    lockedUserRecord.signerPubkey = signerPubkey
+    lockedUserRecord.block = event.block.number;
+    lockedUserRecord.fromTimestamp = event.block.timestamp
+    lockedUserRecord.save()
+  }else{
+    lockedUserRecord.amount = amount
+    lockedUserRecord.save()
+  }
+
+
   let record = LockedParam.load(txHash)
 
   if (record == null) {
@@ -95,6 +110,15 @@ export function handleRelocked(event: Relocked): void {
   const sequencerId = event.params.sequencerId
   const amount = event.params.amount
   const total = event.params.total
+
+
+  let lockedUserRecord = LockedUserParam.load(from)
+  if(lockedUserRecord == null){}else{
+    lockedUserRecord.amount = amount
+    lockedUserRecord.save()
+  }
+
+
 
   let record = RelockedParam.load(txHash)
 

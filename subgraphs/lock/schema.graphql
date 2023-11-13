@@ -1,3 +1,14 @@
+type LockedUserParam @entity {
+  # address
+  id: ID!
+  user: String!
+  amount: BigInt!
+  signerPubkey: String!
+  block: BigInt
+  fromTimestamp: BigInt
+}
+
+
 type LockedParam @entity {
   # address
   id: ID!
