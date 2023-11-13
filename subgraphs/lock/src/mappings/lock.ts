@@ -114,7 +114,7 @@ export function handleRelocked(event: Relocked): void {
 
   let lockedUserRecord = LockedUserParam.load(from)
   if(lockedUserRecord == null){}else{
-    lockedUserRecord.amount = amount
+    lockedUserRecord.amount = total
     lockedUserRecord.save()
   }
 
