@@ -16,7 +16,7 @@ export function handleLocked(event: Locked): void {
 
   let lockedUserRecord = LockedUserParam.load(from)
   if(lockedUserRecord == null){
-    
+    lockedUserRecord = new LockedUserParam(from)
     lockedUserRecord.user = from
     lockedUserRecord.amount = amount
     lockedUserRecord.signerPubkey = signerPubkey
