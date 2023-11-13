@@ -61,7 +61,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs1:5001'
-      ethereum: 'metis:http://0.0.0.0:8545'
+      ethereum: 'metis:http://127.0.0.1:8545'
       GRAPH_LOG: info
     restart: always
   ipfs1:
@@ -69,7 +69,7 @@ services:
     ports:
       - '4001:5001'
     volumes:
-      - /data/graph-node2/ipfs:/data/ipfs
+      - /data/graph-node1/ipfs:/data/ipfs
     restart: always
   postgres1:
     image: postgres
@@ -81,5 +81,5 @@ services:
       POSTGRES_PASSWORD: let-me-in
       POSTGRES_DB: graph-node
     volumes:
-      - /data/graph-node2/postgres:/var/lib/postgresql/data
+      - /data/graph-node1/postgres:/var/lib/postgresql/data
     restart: always
