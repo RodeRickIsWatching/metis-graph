@@ -26,6 +26,8 @@ export function handleLocked(event: Locked): void {
     record.total = total
     record.signerPubkey = signerPubkey
     record.user = from
+    record.block = event.block.number;
+    record.blockTimestamp = event.block.timestamp
 
     record.save()
   }
@@ -48,6 +50,8 @@ export function handleUnlocked(event: Unlocked): void {
     record.amount = amount
     record.total = total
     record.user = from
+    record.block = event.block.number;
+    record.blockTimestamp = event.block.timestamp
 
     record.save()
   }
@@ -76,6 +80,8 @@ export function handleUnlockInit(event: UnlockInit): void {
     record.deactivationTime = deactivationTime
     record.unlockClaimTime = unlockClaimTime
     record.user = from
+    record.block = event.block.number;
+    record.blockTimestamp = event.block.timestamp
 
     record.save()
   }
@@ -98,6 +104,9 @@ export function handleRelocked(event: Relocked): void {
     record.amount = amount
     record.total = total
     record.user = from
+    // record.deltaAmount = 
+    record.block = event.block.number;
+    record.blockTimestamp = event.block.timestamp
 
     record.save()
   }
@@ -118,6 +127,8 @@ export function handleWithdrawDelayTimeChange(event: WithrawDelayTimeChange): vo
     record.oldWithrawDelayTime = oldWithrawDelayTime
     record.newWithrawDelayTime = newWithrawDelayTime
     record.user = from
+    record.block = event.block.number;
+    record.blockTimestamp = event.block.timestamp
 
     record.save()
   }
@@ -138,6 +149,8 @@ export function handleRewardUpdate(event: RewardUpdate): void {
     record.oldReward = oldReward
     record.newReward = newReward
     record.user = from
+    record.block = event.block.number;
+    record.blockTimestamp = event.block.timestamp
 
     record.save()
   }
@@ -158,6 +171,8 @@ export function handleLockUpdate (event: LockUpdate): void{
     record.newAmount = newAmount
     record.nonce = nonce
     record.user = from
+    record.block = event.block.number;
+    record.blockTimestamp = event.block.timestamp
 
     record.save()
   }
@@ -180,6 +195,9 @@ export function handleClaimRewards(event: ClaimRewards): void {
     record.totalAmount = totalAmount
     record.amount = amount
     record.user = from
+    record.block = event.block.number;
+    record.blockTimestamp = event.block.timestamp
+
 
     record.save()
   }
