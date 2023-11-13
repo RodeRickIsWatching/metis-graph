@@ -1,7 +1,7 @@
 version: '3'
 services:
   graph-node:
-    image: graphprotocol/graph-node:v0.31.0-rc.1
+    image: graphprotocol/graph-node:v0.24.2
     ports:
       - '8000:8000'
       - '8001:8001'
@@ -69,7 +69,7 @@ services:
     ports:
       - '4001:5001'
     volumes:
-      - /data/graph-node1/ipfs:/data/ipfs
+      - /data/graph-node2/ipfs:/data/ipfs
     restart: always
   postgres1:
     image: postgres
@@ -81,5 +81,5 @@ services:
       POSTGRES_PASSWORD: let-me-in
       POSTGRES_DB: graph-node
     volumes:
-      - /data/graph-node1/postgres:/var/lib/postgresql/data
+      - /data/graph-node2/postgres:/var/lib/postgresql/data
     restart: always
