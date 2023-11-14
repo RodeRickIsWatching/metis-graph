@@ -22,6 +22,7 @@ export function handleLocked(event: Locked): void {
     lockedUserRecord.signerPubkey = signerPubkey
     lockedUserRecord.block = event.block.number;
     lockedUserRecord.fromTimestamp = event.block.timestamp
+    lockedUserRecord.sequencerId = sequencerId
     lockedUserRecord.save()
   }else{
     lockedUserRecord.amount = amount
@@ -113,7 +114,7 @@ export function handleRelocked(event: Relocked): void {
 
 
   let lockedUserRecord = LockedUserParam.load(from)
-  if(lockedUserRecord == null){}else{
+  if(lockedUserRecord == null){}else if(sequencerId == lockedUserRecord.sequencerId){
     lockedUserRecord.amount = total
     lockedUserRecord.save()
   }
