@@ -2,32 +2,58 @@
 Metis blocks
 """
 type Block @entity {
-    "ID (hash)"
-    id: ID!
-    "Parent Hash"
-    parentHash: Bytes!
-    "Uncles Hash"
-    unclesHash: Bytes!
-    "Author"
-    author: Bytes!
-    "State Root"
-    stateRoot: Bytes!
-    "Transactions Root"
-    transactionsRoot: Bytes!
-    "Receipts Root"
-    receiptsRoot: Bytes!
-    "Number"
-    number: BigInt!
-    "Gas Used"
-    gasUsed: BigInt!
-    "Gas Limit"
-    gasLimit: BigInt!
-    "Timestamp"
-    timestamp: BigInt!
-    "Difficulty"
-    difficulty: BigInt!
-    "Total Difficulty"
-    totalDifficulty: BigInt!
-    "Size"
-    size: BigInt
+  "ID (hash)"
+  id: ID!
+  "Parent Hash"
+  parentHash: Bytes!
+  "Uncles Hash"
+  unclesHash: Bytes!
+  "Author"
+  author: Bytes!
+  "State Root"
+  stateRoot: Bytes!
+  "Transactions Root"
+  transactionsRoot: Bytes!
+  "Receipts Root"
+  receiptsRoot: Bytes!
+  "Number"
+  number: BigInt!
+  "Gas Used"
+  gasUsed: BigInt!
+  "Gas Limit"
+  gasLimit: BigInt!
+  "Timestamp"
+  timestamp: BigInt!
+  "Difficulty"
+  difficulty: BigInt!
+  "Total Difficulty"
+  totalDifficulty: BigInt!
+  "Size"
+  size: BigInt
+}
+
+type NewEpochParam @entity {
+  id: ID!
+  epochId: BigInt!
+  startBlock: BigInt!
+  endBlock: BigInt!
+  signer: String!
+}
+type ReCommitEpochParam @entity {
+  # epoch
+  id: ID!
+  oldEpochId: BigInt!
+  newEpochId: BigInt!
+  startBlock: BigInt!
+  endBlock: BigInt!
+  newSigner: String!
+}
+
+type UserEpochParam @entity {
+  id: ID!
+  epochId: BigInt!
+  startBlock: BigInt!
+  endBlock: BigInt!
+  signer: String!
+  active: boolean!
 }

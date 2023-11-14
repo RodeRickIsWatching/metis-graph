@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
 import { ethereum } from "@graphprotocol/graph-ts";
-import { Block } from "./types/schema";
+import { Block, UserEpochParam, NewEpochParam, ReCommitEpochParam } from "./types/schema";
+import { ReCommitEpoch, NewEpoch } from './types/Lock/Lock'
 
 export function handleBlock(block: ethereum.Block): void {
   let entity = new Block(block.hash.toHex());
@@ -18,4 +19,84 @@ export function handleBlock(block: ethereum.Block): void {
   entity.totalDifficulty = block.totalDifficulty;
   entity.size = block.size;
   entity.save();
+}
+
+export const handleEpoch(event: NewEpoch): void {
+  const epochId = event.params.epochId;
+  let record = UserEpochParam.load(epochId)
+  if(record == null){
+    record = new UserEpochParam(epochId)
+    record.epochId = epochId;
+    record.startBlock =  event.params.startBlock;
+    record.endBlock =  event.params.endBlock;
+    record.signer =  event.params.signer;
+    
+    record.block = event.block.number;
+    record.blockTimestamp = event.block.timestamp
+    record.valid = true;
+    
+
+    record.save()
+  }
+
+  const txHash = event.transaction.hash.toHex()
+  let txRecord = NewEpochParam.load(txHash)
+
+  if (txRecord == null) {
+    txRecord = new NewEpochParam(txHash)
+    txRecord.epochId = epochId;
+    txRecord.startBlock =  event.params.startBlock;
+    txRecord.endBlock =  event.params.endBlock;
+    txRecord.signer =  event.params.signer;
+    
+    txRecord.block = event.block.number;
+    txRecord.blockTimestamp = event.block.timestamp
+
+    txRecord.save()
+  }
+
+}
+export const handleReCommitEpoch(event: ReCommitEpoch): void {
+  const newEpochId = event.params.newEpochId;
+  const oldEpochId = event.params.oldEpochId;
+  let oldRecord = UserEpochParam.load(oldEpochId)
+  let newRecord = UserEpochParam.load(newEpochId)
+  if(oldRecord != null){
+    oldRecord.valid = false;
+    oldRecord.save()
+  }
+  if(newRecord == null){
+    newRecord = new UserEpochParam(newEpochId)
+    newRecord.epochId = newEpochId;
+    newRecord.startBlock =  event.params.startBlock;
+    newRecord.endBlock =  event.params.endBlock;
+    newRecord.signer =  event.params.newSigner;
+    
+    newRecord.block = event.block.number;
+    newRecord.blockTimestamp = event.block.timestamp
+    newRecord.valid = true;
+
+    newRecord.save()
+  }
+  
+
+
+  const txHash = event.transaction.hash.toHex()
+  let txRecord = ReCommitEpochParam.load(txHash)
+
+  if (txRecord == null) {
+    txRecord = new ReCommitEpochParam(txHash)
+    txRecord.newEpochId = newEpochId;
+    txRecord.oldEpochId = oldEpochId;
+    txRecord.startBlock =  event.params.startBlock;
+    txRecord.endBlock =  event.params.endBlock;
+    txRecord.signer =  event.params.signer;
+    
+    txRecord.block = event.block.number;
+    txRecord.blockTimestamp = event.block.timestamp
+
+    txRecord.save()
+  }
+
+
 }
