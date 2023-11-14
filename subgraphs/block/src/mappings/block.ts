@@ -26,7 +26,7 @@ export function handleEpoch (event: NewEpoch): void{
   let record = UserEpochParam.load(epochId)
   if(record == null){
     record = new UserEpochParam(epochId)
-    record.epochId = BigInt.fromString(epochId);
+    record.epochId = epochId;
     record.startBlock =  event.params.startBlock;
     record.endBlock =  event.params.endBlock;
     record.signer =  event.params.signer.toHex();
@@ -44,7 +44,7 @@ export function handleEpoch (event: NewEpoch): void{
 
   if (txRecord == null) {
     txRecord = new NewEpochParam(txHash)
-    txRecord.epochId = BigInt.fromString(epochId);
+    txRecord.epochId = epochId;
     txRecord.startBlock =  event.params.startBlock;
     txRecord.endBlock =  event.params.endBlock;
     txRecord.signer =  event.params.signer.toHex();
@@ -67,7 +67,7 @@ export function handleReCommitEpoch(event: ReCommitEpoch): void {
   }
   if(newRecord == null){
     newRecord = new UserEpochParam(newEpochId)
-    newRecord.epochId = BigInt.fromString(newEpochId);
+    newRecord.epochId = newEpochId;
     newRecord.startBlock =  event.params.startBlock;
     newRecord.endBlock =  event.params.endBlock;
     newRecord.signer =  event.params.newSigner.toHex();
@@ -86,8 +86,8 @@ export function handleReCommitEpoch(event: ReCommitEpoch): void {
 
   if (txRecord == null) {
     txRecord = new ReCommitEpochParam(txHash)
-    txRecord.newEpochId = BigInt.fromString(newEpochId);
-    txRecord.oldEpochId = BigInt.fromString(oldEpochId);
+    txRecord.newEpochId = newEpochId;
+    txRecord.oldEpochId = oldEpochId;
     txRecord.startBlock =  event.params.startBlock;
     txRecord.endBlock =  event.params.endBlock;
     txRecord.newSigner =  event.params.newSigner.toHex();

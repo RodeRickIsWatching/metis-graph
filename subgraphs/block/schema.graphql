@@ -34,7 +34,7 @@ type Block @entity {
 
 type NewEpochParam @entity {
   id: ID!
-  epochId: BigInt!
+  epochId: String!
   startBlock: BigInt!
   endBlock: BigInt!
   signer: String!
@@ -44,8 +44,8 @@ type NewEpochParam @entity {
 type ReCommitEpochParam @entity {
   # epoch
   id: ID!
-  oldEpochId: BigInt!
-  newEpochId: BigInt!
+  oldEpochId: String!
+  newEpochId: String!
   startBlock: BigInt!
   endBlock: BigInt!
   newSigner: String!
@@ -55,7 +55,7 @@ type ReCommitEpochParam @entity {
 
 type UserEpochParam @entity {
   id: ID!
-  epochId: BigInt!
+  epochId: String!
   startBlock: BigInt!
   endBlock: BigInt!
   signer: String!
