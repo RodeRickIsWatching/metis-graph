@@ -6,6 +6,7 @@ type LockedUserParam @entity {
   signerPubkey: String!
   block: BigInt
   fromTimestamp: BigInt
+  sequencerId: BigInt!
 }
 
 
