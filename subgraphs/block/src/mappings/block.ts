@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
-import { ethereum } from "@graphprotocol/graph-ts";
-import { Block, UserEpochParam, NewEpochParam, ReCommitEpochParam } from "./types/schema";
-import { ReCommitEpoch, NewEpoch } from './types/MetisValidatorSet/MetisValidatorSet'
+import { BigInt, ethereum } from "@graphprotocol/graph-ts";
+import { Block, UserEpochParam, NewEpochParam, ReCommitEpochParam } from "../types/schema";
+import { ReCommitEpoch, NewEpoch } from '../types/MetisValidatorSet/MetisValidatorSet'
 
 export function handleBlock(block: ethereum.Block): void {
   let entity = new Block(block.hash.toHex());
@@ -26,7 +26,7 @@ export const handleEpoch = (event: NewEpoch): void=> {
   let record = UserEpochParam.load(epochId)
   if(record == null){
     record = new UserEpochParam(epochId)
-    record.epochId = epochId;
+    record.epochId = BigInt.fromString(epochId);
     record.startBlock =  event.params.startBlock;
     record.endBlock =  event.params.endBlock;
     record.signer =  event.params.signer.toHex();
@@ -44,7 +44,7 @@ export const handleEpoch = (event: NewEpoch): void=> {
 
   if (txRecord == null) {
     txRecord = new NewEpochParam(txHash)
-    txRecord.epochId = epochId;
+    txRecord.epochId = BigInt.fromString(epochId);
     txRecord.startBlock =  event.params.startBlock;
     txRecord.endBlock =  event.params.endBlock;
     txRecord.signer =  event.params.signer.toHex();
@@ -67,7 +67,7 @@ export const handleReCommitEpoch = (event: ReCommitEpoch): void => {
   }
   if(newRecord == null){
     newRecord = new UserEpochParam(newEpochId)
-    newRecord.epochId = newEpochId;
+    newRecord.epochId = BigInt.fromString(newEpochId);
     newRecord.startBlock =  event.params.startBlock;
     newRecord.endBlock =  event.params.endBlock;
     newRecord.signer =  event.params.newSigner.toHex();
@@ -86,11 +86,11 @@ export const handleReCommitEpoch = (event: ReCommitEpoch): void => {
 
   if (txRecord == null) {
     txRecord = new ReCommitEpochParam(txHash)
-    txRecord.newEpochId = newEpochId;
-    txRecord.oldEpochId = oldEpochId;
+    txRecord.newEpochId = BigInt.fromString(newEpochId);
+    txRecord.oldEpochId = BigInt.fromString(oldEpochId);
     txRecord.startBlock =  event.params.startBlock;
     txRecord.endBlock =  event.params.endBlock;
-    txRecord.signer =  event.params.signer.toHex();
+    txRecord.newSigner =  event.params.newSigner.toHex();
     
     txRecord.block = event.block.number;
     txRecord.blockTimestamp = event.block.timestamp
