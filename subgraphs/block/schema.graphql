@@ -38,8 +38,8 @@ type NewEpochParam @entity {
   startBlock: BigInt!
   endBlock: BigInt!
   signer: String!
-  block: BigInt
-  blockTimestamp: BigInt
+  block: BigInt!
+  blockTimestamp: BigInt!
 }
 type ReCommitEpochParam @entity {
   # epoch
@@ -49,8 +49,8 @@ type ReCommitEpochParam @entity {
   startBlock: BigInt!
   endBlock: BigInt!
   newSigner: String!
-  block: BigInt
-  blockTimestamp: BigInt
+  block: BigInt!
+  blockTimestamp: BigInt!
 }
 
 type UserEpochParam @entity {
@@ -60,6 +60,6 @@ type UserEpochParam @entity {
   endBlock: BigInt!
   signer: String!
   valid: Boolean!
-  block: BigInt
-  blockTimestamp: BigInt
+  block: BigInt!
+  blockTimestamp: BigInt!
 }
