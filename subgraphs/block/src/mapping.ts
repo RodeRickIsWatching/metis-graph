@@ -29,7 +29,7 @@ export const handleEpoch = (event: NewEpoch): void=> {
     record.epochId = epochId;
     record.startBlock =  event.params.startBlock;
     record.endBlock =  event.params.endBlock;
-    record.signer =  event.params.signer;
+    record.signer =  event.params.signer.toHex();
     
     record.block = event.block.number;
     record.blockTimestamp = event.block.timestamp
@@ -47,7 +47,7 @@ export const handleEpoch = (event: NewEpoch): void=> {
     txRecord.epochId = epochId;
     txRecord.startBlock =  event.params.startBlock;
     txRecord.endBlock =  event.params.endBlock;
-    txRecord.signer =  event.params.signer;
+    txRecord.signer =  event.params.signer.toHex();
     
     txRecord.block = event.block.number;
     txRecord.blockTimestamp = event.block.timestamp
@@ -70,7 +70,7 @@ export const handleReCommitEpoch = (event: ReCommitEpoch): void => {
     newRecord.epochId = newEpochId;
     newRecord.startBlock =  event.params.startBlock;
     newRecord.endBlock =  event.params.endBlock;
-    newRecord.signer =  event.params.newSigner;
+    newRecord.signer =  event.params.newSigner.toHex();
     
     newRecord.block = event.block.number;
     newRecord.blockTimestamp = event.block.timestamp
@@ -90,7 +90,7 @@ export const handleReCommitEpoch = (event: ReCommitEpoch): void => {
     txRecord.oldEpochId = oldEpochId;
     txRecord.startBlock =  event.params.startBlock;
     txRecord.endBlock =  event.params.endBlock;
-    txRecord.signer =  event.params.signer;
+    txRecord.signer =  event.params.signer.toHex();
     
     txRecord.block = event.block.number;
     txRecord.blockTimestamp = event.block.timestamp
