@@ -21,7 +21,7 @@ export function handleBlock(block: ethereum.Block): void {
   entity.save();
 }
 
-export const handleEpoch(event: NewEpoch): void {
+export const handleEpoch = (event: NewEpoch): void=> {
   const epochId = event.params.epochId;
   let record = UserEpochParam.load(epochId)
   if(record == null){
@@ -56,7 +56,7 @@ export const handleEpoch(event: NewEpoch): void {
   }
 
 }
-export const handleReCommitEpoch(event: ReCommitEpoch): void {
+export const handleReCommitEpoch = (event: ReCommitEpoch): void => {
   const newEpochId = event.params.newEpochId;
   const oldEpochId = event.params.oldEpochId;
   let oldRecord = UserEpochParam.load(oldEpochId)
