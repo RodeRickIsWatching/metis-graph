@@ -24,7 +24,7 @@ dataSources:
       eventHandlers:
         - event: NewEpoch(indexed uint256,uint256,uint256,address)
           handler: handleEpoch
-        - event: ReCommitEpoch(indexed uint256,indexed uint256, uint256,uint256,address)
+        - event: ReCommitEpoch(indexed uint256,indexed uint256,uint256,uint256,address)
           handler: handleReCommitEpoch
       blockHandlers:
         - handler: handleBlock
