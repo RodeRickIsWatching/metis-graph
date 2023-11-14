@@ -30,10 +30,8 @@ export function handleEpoch (event: NewEpoch): void{
     record.startBlock =  event.params.startBlock;
     record.endBlock =  event.params.endBlock;
     record.signer =  event.params.signer.toHex();
-    
     record.block = event.block.number;
     record.blockTimestamp = event.block.timestamp
-    record.valid = true;
     
 
     record.save()
@@ -48,7 +46,6 @@ export function handleEpoch (event: NewEpoch): void{
     txRecord.startBlock =  event.params.startBlock;
     txRecord.endBlock =  event.params.endBlock;
     txRecord.signer =  event.params.signer.toHex();
-    
     txRecord.block = event.block.number;
     txRecord.blockTimestamp = event.block.timestamp
 
@@ -59,26 +56,32 @@ export function handleEpoch (event: NewEpoch): void{
 export function handleReCommitEpoch(event: ReCommitEpoch): void {
   const newEpochId = event.params.newEpochId;
   const oldEpochId = event.params.oldEpochId;
-  let oldRecord = UserEpochParam.load(oldEpochId.toHex())
-  let newRecord = UserEpochParam.load(newEpochId.toHex())
-  if(oldRecord != null){
-    oldRecord.valid = false;
-    oldRecord.save()
-  }
-  if(newRecord == null){
-    newRecord = new UserEpochParam(newEpochId.toHex())
-    newRecord.epochId = (newEpochId);
-    newRecord.startBlock =  event.params.startBlock;
-    newRecord.endBlock =  event.params.endBlock;
-    newRecord.signer =  event.params.newSigner.toHex();
-    
-    newRecord.block = event.block.number;
-    newRecord.blockTimestamp = event.block.timestamp
-    newRecord.valid = true;
 
-    newRecord.save()
-  }
+  if(newEpochId!=oldEpochId){
+    let oldRecord = UserEpochParam.load(oldEpochId.toHex())
+    let newRecord = UserEpochParam.load(newEpochId.toHex())
+    
+    if(oldRecord != null){
+      const oldEndBlock = event.params.startBlock.minus(BigInt.fromString('1'));
+      oldRecord.endBlock = oldEndBlock
+      oldRecord.save()
+    }
+    if(newRecord == null){
+      newRecord = new UserEpochParam(newEpochId.toHex())
+      newRecord.epochId = (newEpochId);
+      newRecord.startBlock =  event.params.startBlock;
+      newRecord.endBlock =  event.params.endBlock;
+      newRecord.signer =  event.params.newSigner.toHex();
+      
+      newRecord.block = event.block.number;
+      newRecord.blockTimestamp = event.block.timestamp
   
+      newRecord.save()
+    }
+    
+  }
+
+
 
 
   const txHash = event.transaction.hash.toHex()

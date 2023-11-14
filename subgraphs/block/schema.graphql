@@ -59,7 +59,6 @@ type UserEpochParam @entity {
   startBlock: BigInt!
   endBlock: BigInt!
   signer: String!
-  valid: Boolean!
   block: BigInt!
   blockTimestamp: BigInt!
 }
