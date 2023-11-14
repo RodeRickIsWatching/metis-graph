@@ -55,5 +55,5 @@ type UserEpochParam @entity {
   startBlock: BigInt!
   endBlock: BigInt!
   signer: String!
-  active: boolean!
+  active: Boolean!
 }
