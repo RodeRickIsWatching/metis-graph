@@ -23,7 +23,6 @@ export function handleBlock(block: ethereum.Block): void {
 
 export const handleEpoch = (event: NewEpoch): void=> {
   const epochId = event.params.epochId;
-  console.log('epochId', epochId) 
   let record = UserEpochParam.load(epochId)
   if(record == null){
     record = new UserEpochParam(epochId)
