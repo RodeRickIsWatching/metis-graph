@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 import { ethereum } from "@graphprotocol/graph-ts";
 import { Block, UserEpochParam, NewEpochParam, ReCommitEpochParam } from "./types/schema";
-import { ReCommitEpoch, NewEpoch } from './types/Lock/Lock'
+import { ReCommitEpoch, NewEpoch } from './types/MetisValidatorSet/MetisValidatorSet'
 
 export function handleBlock(block: ethereum.Block): void {
   let entity = new Block(block.hash.toHex());
