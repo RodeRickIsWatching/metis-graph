@@ -23,7 +23,7 @@ services:
   ipfs-holesky-block:
     image: ipfs/go-ipfs:v0.4.23
     ports:
-      - '4001:5001'
+      - '4002:5001'
     volumes:
       - /data/graph-node-holesky-block/ipfs:/data/ipfs
     restart: always
