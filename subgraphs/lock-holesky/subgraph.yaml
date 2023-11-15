@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0x9Da17239a4170f50A5A2c11813BD0C601b5c9693' # LockingInfo
       abi: Lock
-      startBlock: 10000
+      startBlock: 320323
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
