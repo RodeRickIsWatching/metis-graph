@@ -14,9 +14,9 @@ export function handleLocked(event: Locked): void {
   const total = event.params.total
   const signerPubkey = event.params.signerPubkey.toHex()
 
-  let lockedUserRecord = LockedUserParam.load(from)
+  let lockedUserRecord = LockedUserParam.load(sequencerId)
   if(lockedUserRecord == null){
-    lockedUserRecord = new LockedUserParam(from)
+    lockedUserRecord = new LockedUserParam(sequencerId)
     lockedUserRecord.user = from
     lockedUserRecord.amount = amount
     lockedUserRecord.signerPubkey = signerPubkey
@@ -113,7 +113,7 @@ export function handleRelocked(event: Relocked): void {
   const total = event.params.total
 
 
-  let lockedUserRecord = LockedUserParam.load(from)
+  let lockedUserRecord = LockedUserParam.load(sequencerId)
   if(lockedUserRecord == null){}else if(sequencerId == lockedUserRecord.sequencerId){
     lockedUserRecord.amount = total
     lockedUserRecord.save()
