@@ -23,7 +23,7 @@ export function handleLocked(event: Locked): void {
     lockedUserRecord.block = event.block.number;
     lockedUserRecord.fromTimestamp = event.block.timestamp
     lockedUserRecord.sequencerId = sequencerId
-    lockedUserRecord.claimAmount = BigInt(0)
+    lockedUserRecord.claimAmount = 0
     lockedUserRecord.save()
   }else{
     lockedUserRecord.amount = amount
