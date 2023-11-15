@@ -1,0 +1,42 @@
+version: '3'
+services:
+  graph-node-holesky:
+    image: graphprotocol/graph-node:v0.31.0-rc.1
+    ports:
+      - '6000:8000'
+      - '6001:8001'
+      - '6020:8020'
+      - '6030:8030'
+      - '6040:8040'
+    depends_on:
+      - ipfs-holesky
+      - postgres-holesky
+    environment:
+      postgres_host: postgres-holesky
+      postgres_user: graph-node
+      postgres_pass: let-me-in
+      postgres_db: graph-node
+      ipfs: 'ipfs1:5001'
+      ethereum: 'mainnet:https://1rpc.io/holesky'
+      GRAPH_LOG: info
+    restart: always
+  ipfs-holesky:
+    image: ipfs/go-ipfs:v0.4.23
+    ports:
+      - '3001:5001'
+    volumes:
+      - /data/graph-node-holesky/ipfs:/data/ipfs
+    restart: always
+  postgres-holesky:
+    image: postgres
+    ports:
+      - '3432:5432'
+    command: ["postgres", "-cshared_preload_libraries=pg_stat_statements"]
+    environment:
+      POSTGRES_USER: graph-node
+      POSTGRES_PASSWORD: let-me-in
+      POSTGRES_DB: graph-node
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
+    volumes:
+      - /data/graph-node-holesky/postgres:/var/lib/postgresql/data
+    restart: always
