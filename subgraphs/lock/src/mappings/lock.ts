@@ -23,6 +23,7 @@ export function handleLocked(event: Locked): void {
     lockedUserRecord.block = event.block.number;
     lockedUserRecord.fromTimestamp = event.block.timestamp
     lockedUserRecord.sequencerId = sequencerId
+    lockedUserRecord.claimAmount = BigInt(0)
     lockedUserRecord.save()
   }else{
     lockedUserRecord.amount = amount
@@ -220,6 +221,16 @@ export function handleClaimRewards(event: ClaimRewards): void {
   const sequencerId = event.params.sequencerId
   const amount = event.params.amount
   const totalAmount = event.params.totalAmount
+
+
+  let lockedUserRecord = LockedUserParam.load(sequencerId.toHex())
+  if(lockedUserRecord == null){
+  }else{
+    lockedUserRecord.claimAmount = lockedUserRecord.claimAmount + amount
+    lockedUserRecord.save()
+  }
+
+
 
   let record = ClaimRewardsParam.load(txHash)
 

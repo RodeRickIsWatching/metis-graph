@@ -7,6 +7,7 @@ type LockedUserParam @entity {
   block: BigInt
   fromTimestamp: BigInt
   sequencerId: BigInt!
+  claimAmount: BigInt!
 }
 
 
