@@ -1,6 +1,10 @@
 import { ClaimRewardsParam, LockUpdateParam, LockedUserParam, LockedParam, RelockedParam, RewardUpdateParam, UnlockInitParam, UnlockedParam, WithrawDelayTimeChangeParam } from '../types/schema'
 import { ClaimRewards, LockUpdate, Locked, Relocked, RewardUpdate, UnlockInit, Unlocked, WithrawDelayTimeChange } from '../types/Lock/Lock'
 
+import {
+  BigInt
+} from "@graphprotocol/graph-ts";
+
 export function handleLocked(event: Locked): void {
   // load factory
   //   event.transaction.from.toHex()
@@ -23,6 +27,7 @@ export function handleLocked(event: Locked): void {
     lockedUserRecord.block = event.block.number;
     lockedUserRecord.fromTimestamp = event.block.timestamp
     lockedUserRecord.sequencerId = sequencerId
+    lockedUserRecord.claimAmount = BigInt.fromString('0')
     lockedUserRecord.save()
   }else{
     lockedUserRecord.amount = amount
@@ -220,6 +225,16 @@ export function handleClaimRewards(event: ClaimRewards): void {
   const sequencerId = event.params.sequencerId
   const amount = event.params.amount
   const totalAmount = event.params.totalAmount
+
+
+  let lockedUserRecord = LockedUserParam.load(sequencerId.toHex())
+  if(lockedUserRecord == null){
+  }else{
+    lockedUserRecord.claimAmount = lockedUserRecord.claimAmount + amount
+    lockedUserRecord.save()
+  }
+
+
 
   let record = ClaimRewardsParam.load(txHash)
 
