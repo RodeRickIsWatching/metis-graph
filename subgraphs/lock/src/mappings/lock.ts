@@ -85,6 +85,15 @@ export function handleUnlockInit(event: UnlockInit): void {
   const deactivationTime = event.params.deactivationTime
   const unlockClaimTime = event.params.unlockClaimTime
 
+
+  let lockedUserRecord = LockedUserParam.load(sequencerId.toHex())
+  if(lockedUserRecord == null){}else if(sequencerId == lockedUserRecord.sequencerId){
+    lockedUserRecord.amount = lockedUserRecord.amount.minus(amount)
+    lockedUserRecord.save()
+  }
+
+
+
   let record = UnlockInitParam.load(txHash)
 
   if (record == null) {
