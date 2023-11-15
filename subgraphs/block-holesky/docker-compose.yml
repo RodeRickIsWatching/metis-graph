@@ -1,36 +1,36 @@
 version: '3'
 services:
-  graph-node-holesky-lock:
+  graph-node-holesky-block:
     image: graphprotocol/graph-node:v0.31.0-rc.1
     ports:
-      - '8000:8000'
-      - '8001:8001'
-      - '8020:8020'
-      - '8030:8030'
-      - '8040:8040'
+      - '7000:8000'
+      - '7001:8001'
+      - '7020:8020'
+      - '7030:8030'
+      - '7040:8040'
     depends_on:
-      - ipfs-holesky-lock
-      - postgres-holesky-lock
+      - ipfs-holesky-block
+      - postgres-holesky-block
     environment:
-      postgres_host: postgres-holesky-lock
+      postgres_host: postgres-holesky-block
       postgres_user: graph-node
       postgres_pass: let-me-in
       postgres_db: graph-node
-      ipfs: 'ipfs-holesky-lock:5001'
-      ethereum: 'mainnet:https://ethereum-goerli.publicnode.com'
+      ipfs: 'ipfs-holesky-block:5001'
+      ethereum: 'mainnet:http://52.7.132.78:8545'
       GRAPH_LOG: info
     restart: always
-  ipfs-holesky-lock:
+  ipfs-holesky-block:
     image: ipfs/go-ipfs:v0.4.23
     ports:
-      - '5001:5001'
+      - '4001:5001'
     volumes:
-      - /data/graph-node0/ipfs:/data/ipfs
+      - /data/graph-node-holesky-block/ipfs:/data/ipfs
     restart: always
-  postgres-holesky-lock:
+  postgres-holesky-block:
     image: postgres
     ports:
-      - '5432:5432'
+      - '4432:5432'
     command: ["postgres", "-cshared_preload_libraries=pg_stat_statements"]
     environment:
       POSTGRES_USER: graph-node
@@ -38,5 +38,5 @@ services:
       POSTGRES_DB: graph-node
       POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
     volumes:
-      - /data/graph-node-holesky-lock/postgres:/var/lib/postgresql/data
+      - /data/graph-node-holesky-block/postgres:/var/lib/postgresql/data
     restart: always

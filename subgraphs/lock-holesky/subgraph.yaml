@@ -8,7 +8,7 @@ dataSources:
     name: Lock
     network: mainnet
     source:
-      address: '0x9Da17239a4170f50A5A2c11813BD0C601b5c9693' # LockingInfo
+      address: '0x9Da17239a4170f50A5A2c11813BD0C601b5c9693'
       abi: Lock
       startBlock: 320323
     mapping:
