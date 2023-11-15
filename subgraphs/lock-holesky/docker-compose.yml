@@ -17,7 +17,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs-holesky-lock:5001'
-      ethereum: 'mainnet:https://ethereum-goerli.publicnode.com'
+      ethereum: 'mainnet:https://ethereum-holesky.publicnode.com'
       GRAPH_LOG: info
     restart: always
   ipfs-holesky-lock:
