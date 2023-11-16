@@ -8,9 +8,9 @@ dataSources:
     name: Lock
     network: mainnet
     source:
-      address: '0x7319a7dC6b4d8eBC4D204Cfb9Ef74A715cbDF739'
+      address: '0x5754eF8C8Da3621ca69Ec08fBFe49f49c8437e9c'
       abi: Lock
-      startBlock: 320323
+      startBlock: 329746
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
