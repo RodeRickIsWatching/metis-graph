@@ -245,9 +245,9 @@ export function handleClaimRewards(event: ClaimRewards): void {
     record.amount = amount
     record.user = from
     record.block = event.block.number;
-    record.blockTimestamp = event.block.timestamp
+    record.blockTimestamp = event.block.timestamp;
 
 
-    record.save()
+    record.save();
   }
 }
