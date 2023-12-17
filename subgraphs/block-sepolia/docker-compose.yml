@@ -1,0 +1,42 @@
+version: '3'
+services:
+  graph-node-sepolia-block:
+    image: graphprotocol/graph-node:v0.31.0-rc.1
+    ports:
+      - '5000:8000'
+      - '5001:8001'
+      - '5020:8020'
+      - '5030:8030'
+      - '5040:8040'
+    depends_on:
+      - ipfs-sepolia-block
+      - postgres-sepolia-block
+    environment:
+      postgres_host: postgres-sepolia-block
+      postgres_user: graph-node
+      postgres_pass: let-me-in
+      postgres_db: graph-node
+      ipfs: 'ipfs-sepolia-block:5001'
+      ethereum: 'mainnet:http://54.146.131.105:8545'
+      GRAPH_LOG: info
+    restart: always
+  ipfs-sepolia-block:
+    image: ipfs/go-ipfs:v0.4.23
+    ports:
+      - '2002:5001'
+    volumes:
+      - /data/graph-node-sepolia-block/ipfs:/data/ipfs
+    restart: always
+  postgres-sepolia-block:
+    image: postgres
+    ports:
+      - '2432:5432'
+    command: ["postgres", "-cshared_preload_libraries=pg_stat_statements"]
+    environment:
+      POSTGRES_USER: graph-node
+      POSTGRES_PASSWORD: let-me-in
+      POSTGRES_DB: graph-node
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
+    volumes:
+      - /data/graph-node-sepolia-block/postgres:/var/lib/postgresql/data
+    restart: always

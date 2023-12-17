@@ -1,0 +1,138 @@
+type LockedUserParam @entity {
+  # address
+  id: ID!
+  user: String!
+  amount: BigInt!
+  signerPubkey: String!
+  block: BigInt
+  fromTimestamp: BigInt
+  sequencerId: BigInt!
+  claimAmount: BigInt!
+}
+
+
+type LockedParam @entity {
+  # address
+  id: ID!
+  user: String!
+  signer: String!
+  sequencerId: BigInt!
+  nonce: BigInt!
+  activationBatch: BigInt!
+  amount: BigInt!
+  total: BigInt!
+  signerPubkey: String!
+  block: BigInt
+  blockTimestamp: BigInt
+}
+
+type UnlockedParam @entity {
+  # address
+  id: ID!
+  user: String!
+  sequencerId: BigInt!
+  amount: BigInt!
+  total: BigInt!
+  block: BigInt
+  blockTimestamp: BigInt
+}
+
+type UnlockInitParam @entity {
+  # address
+  id: ID!
+
+  user: String!
+  sequencerId: BigInt!
+  nonce: BigInt!
+  deactivationBatch: BigInt!
+  deactivationTime: BigInt!
+  unlockClaimTime: BigInt!
+  amount: BigInt!
+  block: BigInt
+  blockTimestamp: BigInt
+  # total: BigInt!
+}
+
+type RelockedParam @entity {
+  # address
+  id: ID!
+  user: String!
+  sequencerId: BigInt!
+  amount: BigInt!
+  total: BigInt!
+  block: BigInt
+  blockTimestamp: BigInt
+}
+
+type WithrawDelayTimeChangeParam @entity {
+  # address
+  id: ID!
+  user: String!
+  newWithrawDelayTime: BigInt!
+  oldWithrawDelayTime: BigInt!
+  block: BigInt
+  blockTimestamp: BigInt
+}
+
+type RewardUpdateParam @entity {
+  # address
+  id: ID!
+  user: String!
+  oldReward: BigInt!
+  newReward: BigInt!
+  block: BigInt
+  blockTimestamp: BigInt
+}
+
+type ClaimRewardsParam @entity {
+  # address
+  id: ID!
+  user: String!
+  sequencerId: BigInt!
+  amount: BigInt!
+  totalAmount: BigInt!
+  block: BigInt
+  blockTimestamp: BigInt
+}
+
+type LockUpdateParam @entity {
+  # address
+  id: ID!
+  user: String!
+  sequencerId: BigInt!
+  newAmount: BigInt!
+  nonce: BigInt!
+  block: BigInt
+  blockTimestamp: BigInt
+}
+
+type Block @entity {
+    "ID (hash)"
+    id: ID!
+    "Parent Hash"
+    parentHash: Bytes!
+    "Uncles Hash"
+    unclesHash: Bytes!
+    "Author"
+    author: Bytes!
+    "State Root"
+    stateRoot: Bytes!
+    "Transactions Root"
+    transactionsRoot: Bytes!
+    "Receipts Root"
+    receiptsRoot: Bytes!
+    "Number"
+    number: BigInt!
+    "Gas Used"
+    gasUsed: BigInt!
+    "Gas Limit"
+    gasLimit: BigInt!
+    "Timestamp"
+    timestamp: BigInt!
+    "Difficulty"
+    difficulty: BigInt!
+    "Total Difficulty"
+    totalDifficulty: BigInt!
+    "Size"
+    size: BigInt
+}
