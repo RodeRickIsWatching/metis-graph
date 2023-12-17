@@ -17,7 +17,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs-sepolia-lock:5001'
-      ethereum: 'mainnet:https://sepolia.publicgoods.network'
+      ethereum: 'mainnet:https://ethereum-sepolia.publicnode.com'
       GRAPH_LOG: info
     restart: always
   ipfs-sepolia-lock:
