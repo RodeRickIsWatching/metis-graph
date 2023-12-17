@@ -8,9 +8,9 @@ dataSources:
     name: MetisValidatorSet
     network: mainnet
     source:
-      address: "0xBdb7fDbc1211F9eF09Aa9c006ebD389c59ffdBF9"
+      address: "0x99d02CE7160109BdDA8bf81629EEa80661A21509"
       abi: MetisValidatorSet
-      startBlock: 10000
+      startBlock: 1
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
