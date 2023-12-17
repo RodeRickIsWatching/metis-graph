@@ -25,7 +25,7 @@ services:
     ports:
       - '3001:5001'
     volumes:
-      - /data/graph-node0/ipfs:/data/ipfs
+      - /data/graph-node-sepolia-lock/ipfs:/data/ipfs
     restart: always
   postgres-sepolia-lock:
     image: postgres
