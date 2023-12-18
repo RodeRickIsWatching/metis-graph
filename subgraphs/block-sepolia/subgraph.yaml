@@ -8,7 +8,7 @@ dataSources:
     name: MetisValidatorSet
     network: mainnet
     source:
-      address: "0x99d02CE7160109BdDA8bf81629EEa80661A21509"
+      address: "0x3C30d5A6B4F29187122eE4142D6627B228D3b59D"
       abi: MetisValidatorSet
       startBlock: 1
     mapping:
