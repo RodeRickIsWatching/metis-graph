@@ -17,7 +17,7 @@ services:
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs-sepolia-block:5001'
-      ethereum: 'mainnet:http://54.146.131.105:8545'
+      ethereum: 'mainnet:https://sepolia.rpc.metisdevops.link'
       GRAPH_LOG: info
     restart: always
   ipfs-sepolia-block:
