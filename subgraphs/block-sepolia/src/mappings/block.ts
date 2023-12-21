@@ -66,7 +66,7 @@ export function handleReCommitEpoch(event: ReCommitEpoch): void {
       oldRecord.endBlock = oldEndBlock
       oldRecord.save()
     }
-    if(newRecord == null){
+    // if(newRecord == null){
       newRecord = new UserEpochParam(newEpochId.toHex())
       newRecord.epochId = (newEpochId);
       newRecord.startBlock =  event.params.startBlock;
@@ -77,7 +77,7 @@ export function handleReCommitEpoch(event: ReCommitEpoch): void {
       newRecord.blockTimestamp = event.block.timestamp
   
       newRecord.save()
-    }
+    // }
     
   }
 
