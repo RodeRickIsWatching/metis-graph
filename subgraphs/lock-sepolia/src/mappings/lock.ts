@@ -22,6 +22,7 @@ export function handleLocked(event: Locked): void {
   if(lockedUserRecord == null){
     lockedUserRecord = new LockedUserParam(sequencerId.toHex())
     lockedUserRecord.user = signer
+    lockedUserRecord.owner = from
     lockedUserRecord.amount = amount
     lockedUserRecord.signerPubkey = signerPubkey
     lockedUserRecord.block = event.block.number;
